@@ -6,9 +6,12 @@
       <class name="Satchi.MavenEclipseProject.loginTest">
         <methods>
           <include name="afterMethod"/>
-          <include name="addNewAccount" invocation-numbers="0"/>
+          <include name="afterTest"/>
+          <include name="beforeSuite"/>
+          <include name="addNewCustomer" invocation-numbers="0 1"/>
           <include name="beforetest"/>
           <include name="beforeMethod"/>
+          <include name="afterSuite"/>
         </methods>
       </class> <!-- Satchi.MavenEclipseProject.loginTest -->
     </classes>

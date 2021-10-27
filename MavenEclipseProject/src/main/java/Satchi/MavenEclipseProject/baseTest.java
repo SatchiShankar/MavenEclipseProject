@@ -16,6 +16,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
@@ -43,7 +45,10 @@ public class baseTest {
 				}
 		}
 		
-		
+		@BeforeSuite
+		public void beforeSuite() {
+			
+		}
 		@BeforeTest
 		public void beforetest() {
 			System.setProperty("webdriver.chrome.driver", "C:\\Users\\saran\\Drivers\\chromedriver.exe");
@@ -53,21 +58,22 @@ public class baseTest {
 			
 		 //new ExtentReports(System.getProperty("user.dir")+"\\ExtentReportResults"+myDateObj.format(myFormatObj).replace("-","").replace(" ", "").replace(":","")+".html");
 			
+
 		}
 		
 		@BeforeMethod
 		public void beforeMethod(Method M) {
-			
-			Selenium.html.set(new ExtentHtmlReporter("C:\\Users\\saran\\eclipse-workspace\\MavenEclipseProject\\STMExtentReport.html"));
-			Selenium.report.get().attachReporter(Selenium.html.get());
-			Selenium.html.get().config().setCSS("css-string");
-			Selenium.html.get().config().setDocumentTitle("Satchi Framework Results");
-			Selenium.html.get().config().setEncoding("utf-8");
-			Selenium.html.get().config().setJS("js-string");
-			Selenium.html.get().config().setProtocol(Protocol.HTTPS);
-			Selenium.html.get().config().setReportName("Satchi Framework Learning");
-			Selenium.html.get().config().setTheme(Theme.DARK);
-			Selenium.html.get().config().setTimeStampFormat("MMM dd, yyyy HH:mm:ss");
+			//Selenium.html.set(new ExtentHtmlReporter("C:\\Users\\saran\\eclipse-workspace\\MavenEclipseProject\\STMExtentReport.html"));
+			Selenium.html.config().setCSS("css-string");
+			Selenium.html.config().setDocumentTitle("Satchi Framework Results");
+			Selenium.html.config().setEncoding("utf-8");
+			Selenium.html.config().setJS("js-string");
+			Selenium.html.config().setProtocol(Protocol.HTTPS);
+			Selenium.html.config().setReportName("Satchi Framework Learning");
+			Selenium.html.config().setTheme(Theme.DARK);
+			Selenium.html.config().setTimeStampFormat("MMM dd, yyyy HH:mm:ss");
+			Selenium.report.get().attachReporter(Selenium.html);
+
 			
 			Selenium.test.set(Selenium.report.get().createTest(M.getName()));
 			
@@ -87,10 +93,20 @@ public class baseTest {
 			//WebDriver driver=this.getDriver();
 			getDriver().quit();
 		//	Selenium.report.get().endTest(Selenium.test.get());
-			Selenium.report.get().flush();
+		//	Selenium.report.get().flush();
 		}
 		
-		@DataProvider(name="testData")//, parallel=true
+		@AfterTest
+		public void afterTest() {
+		}
+		
+		@AfterSuite
+		public void afterSuite() {
+			Selenium.report.get().flush();
+
+		}
+		
+		@DataProvider(name="testData", parallel=true)//, parallel=true
 		public Object[][] getdata(Method M) throws IOException{
 			System.out.println(M.getName());
 			System.out.println(Thread.currentThread().getStackTrace()[1].getClassName());

@@ -20,7 +20,7 @@ public class Selenium {
 	   };
 	   
 
-	public static ThreadLocal<ExtentHtmlReporter> html=new ThreadLocal<ExtentHtmlReporter>();
+	public static ExtentHtmlReporter html=new ExtentHtmlReporter("C:\\Users\\saran\\eclipse-workspace\\MavenEclipseProject\\STMExtentReport.html");
 	//ExtentHtmlReporter(System.getProperty("C:\\Users\\saran\\eclipse-workspace\\MavenEclipseProject\\STMExtentReport.html"));
 	  
 	public static ThreadLocal<ExtentReports> report=new ThreadLocal<ExtentReports>() {

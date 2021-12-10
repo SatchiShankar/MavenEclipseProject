@@ -15,9 +15,9 @@ public class AppTest
     @Test
     public void shouldAnswerWithTrue()
     {
-    	System.out.println("Testing12345");
+    	System.out.println("True or False");
         assertTrue( true );
-    	System.out.println("Testing12345");
+    	System.out.println("True or False");
 
     }
 }
